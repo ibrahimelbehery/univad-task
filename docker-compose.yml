@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  tomcat-server:
+    ports:
+      - "8888:8080"
+    build: './build/tomcat'
+    container_name: tomcat
+    restart: on-failure
+    depends_on:
+      - mysql
+    networks:
+      - priv-net
+    volumes:
+      - ./app:/usr/local/tomcat/webapps/
+
+  mysql:
+    ports:
+      - "3306:3306"
+    build: './build/mysql'
+    container_name: mysql
+    restart: always 
+    environment:
+      MYSQL_ROOT_PASSWORD: "admin@123"
+      MYSQL_DATABASE: "my-website"
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: "admin@1234"
+    volumes:
+      - dbData:/var/lib/mysql
+    networks:
+      - priv-net
+
+volumes:
+  app:
+  dbData:
+
+networks:
+  priv-net:
