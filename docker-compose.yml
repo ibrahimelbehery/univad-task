@@ -27,12 +27,14 @@ services:
       MYSQL_PASSWORD: "admin@1234"
     volumes:
       - dbData:/var/lib/mysql
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - priv-net
 
 volumes:
   app:
   dbData:
+  scripts:
 
 networks:
   priv-net:

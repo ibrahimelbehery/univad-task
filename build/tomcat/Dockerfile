@@ -1,7 +1,7 @@
-FROM tomcat:latest
-LABEL maintainer="ibrahimelbehery"
+FROM openjdk:17-alpine
 
-ADD sample.war /usr/local/tomcat/webapps/
+MAINTAINER ibrahim.elbehery
 
-EXPOSE 8080
-CMD ["catalina.sh", "run"]
+COPY chat-0.0.1-SNAPSHOT.jar  /home/chat-0.0.1-SNAPSHOT.jar
+
+CMD ["java","-jar","/home/chat-0.0.1-SNAPSHOT.jar"]
