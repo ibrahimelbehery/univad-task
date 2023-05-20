@@ -4,21 +4,23 @@ services:
   tomcat-server:
     ports:
       - "8888:8080"
-    build: './build/tomcat'
-    container_name: tomcat
+    build: './build/java'
+    container_name: tomcat-java
+    network_mode: "host"
     restart: on-failure
     depends_on:
       - mysql
-    networks:
-      - priv-net
-    volumes:
-      - ./app:/usr/local/tomcat/webapps/
+    #networks:
+      #- host
+    #volumes:
+      #- ./app:/usr/local/tomcat/webapps/
 
   mysql:
     ports:
       - "3306:3306"
     build: './build/mysql'
     container_name: mysql
+    network_mode: "host"
     restart: always 
     environment:
       MYSQL_ROOT_PASSWORD: "admin@123"
@@ -28,13 +30,13 @@ services:
     volumes:
       - dbData:/var/lib/mysql
       - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - priv-net
+    #networks:
+      #- host
 
 volumes:
   app:
   dbData:
   scripts:
 
-networks:
-  priv-net:
+#networks:
+  #priv-net:
