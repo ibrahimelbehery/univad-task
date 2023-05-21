@@ -1,0 +1,74 @@
+---
+- name: install docker and docker compose and create docker users and group
+  hosts: 13.38.12.121
+  gather_facts: false
+  vars_files:
+    allvars.yml
+  vars:
+    docker_services:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-compose-plugin
+
+  tasks:
+  - name: Installing Docker Prerequisite Packages
+    yum:
+      name: "{{item}}"
+      state: latest
+    with_items:
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+    tags:
+      - install
+
+  - name: configure docker-ce repo
+    get_url:
+      url: https://download.docker.com/linux/centos/docker-ce.repo
+      dest: /etc/yum.repos.d/docker-ce.repo
+      mode: 0644
+    become: yes
+    tags:
+      - configure
+
+  - name: create docker group
+    group:
+      name: docker
+      state: present
+
+  - name: add user to docker group
+    user: 
+      name: "{{ username }}"
+      groups: docker
+      append: yes
+
+  - name: reset ssh connection to allow user changes to affect ansible user
+    meta:
+      reset_connection
+
+  - name: install docker services
+    yum:
+      name: "{{item}}"
+      state: present
+    loop: "{{docker_services}}"
+    tags:
+      - installdocker
+
+  - name: start docker services
+    service:
+      name: docker
+      state: started
+      enabled: yes
+
+  - name: install docker compose
+    get_url:
+      url: https://github.com/docker/compose/releases/download/v2.6.0/docker-compose-linux-x86_64
+      dest: /usr/local/bin/docker-compose
+      owner: root
+      group: root
+      mode: u=rwx,g=rx,o=rx
+      validate_certs: false
+    tags:
+      - compose
+...     

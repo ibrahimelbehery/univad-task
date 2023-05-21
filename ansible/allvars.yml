@@ -1,0 +1,3 @@
+#pl3-install-docker-and-compose.yml
+#add user to docker group
+username : centos
