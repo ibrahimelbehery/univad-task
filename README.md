@@ -41,5 +41,10 @@
      ```
      $ docker compose up -d
      ```
+## Sixth Step
+ - I created and configured docker compose file to deploy jenkins server to make my CI/CD pipeline.
+ - The used docker compose file is exists in jenkins directory (docker-compose.yaml)
+ - You can access jenkins server on port : 8087
+ -  
 
 
