@@ -34,9 +34,9 @@
      $ docker-compose up -d
      ```
 ## Fifth Step
- - I created Docker files for the APplication and Database.
+ - I created Docker files for the Application and Database.
  - The created files are exists in build directory.
- - I created docker -compose file to start application and database containers
+ - I created docker compose file to start application and database containers
    ### command
      ```
      $ docker compose up -d
