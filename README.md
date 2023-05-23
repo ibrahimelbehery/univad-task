@@ -20,7 +20,7 @@
      ```
  - I installed and configured VPN server on the provisioned EC2 instance to use it for secure communication with my EC2 instance.
 ## Third Step
- - I used the most famous open source IT configuration automation tool (Ansible) to install and configure docker.
+ - I used the most famous open source IT configuration automation tool (Ansible) to install and configure docker and also install maven .
  - The used playbook is exists in ansible directory (pl1-install-docker-and-compose-RHEL7.yml)
    ### command
      ```
@@ -45,6 +45,7 @@
  - I created and configured docker compose file to deploy jenkins server to make my CI/CD pipeline.
  - The used docker compose file is exists in jenkins directory (docker-compose.yaml)
  - You can access jenkins server on port : 8087
- -  
+ -  the below Piepeline CI/CD is explained what we will do with each stage using Jenkinsfile that exists on the main branch.
 
+![Untitled Diagram](https://github.com/ibrahimelbehery/univad-task/assets/133832432/b2cd7a8b-ee03-42e6-952c-19acd66bca12)
 
