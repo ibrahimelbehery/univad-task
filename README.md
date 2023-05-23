@@ -12,7 +12,7 @@
  - I created Local Virtal machine ( Redhat 7) to install and configure terraform and ansible on it.
 ## Second Step
  - I used the most famous open-source infrastructure-as-code tool (Terrafrom) to Provision AWS (VPC, Network Subnet, Security group, EC2) on the free tier account.
- - the used the maifest file that exists in etrrafrom directory (main.tf)
+ - the used the maifest file that exists in terraform directory (main.tf)
    ### command
      ```
      $ terraform init
@@ -32,6 +32,14 @@
    ### command
      ```
      $ docker-compose up -d
+     ```
+## Fifth Step
+ - I created Docker files for the APplication and Database.
+ - The created files are exists in build directory.
+ - I created docker -compose file to start application and database containers
+   ### command
+     ```
+     $ docker compose up -d
      ```
 
 
